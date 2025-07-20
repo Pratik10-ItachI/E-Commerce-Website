@@ -51,8 +51,9 @@ public class productController {
         return CreateProductResponseDto.fromProduct(product);
     }
 
-    @RequestMapping(name = "PRATIK",value="")
-    public String Hello(){
-        return "Hi Hello";
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable("id") Long id) {
+
+        productService.deleteProduct(id);
     }
 }

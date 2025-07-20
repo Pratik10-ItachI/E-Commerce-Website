@@ -70,4 +70,8 @@ public class ProductServiceFakestoreImpl implements productService {
 
         return request.toProduct();
     }
+
+    public void deleteProduct(Long id){
+        restTemplate.delete("https://fakestoreapi.com/products/"+id.toString());
+    }
 }
