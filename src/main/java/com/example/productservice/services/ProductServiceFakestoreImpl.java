@@ -4,6 +4,7 @@ import com.example.productservice.Exceptions.ResourceNotFoundException;
 import com.example.productservice.dtos.*;
 import com.example.productservice.models.Product;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -73,5 +74,33 @@ public class ProductServiceFakestoreImpl implements productService {
 
     public void deleteProduct(Long id){
         restTemplate.delete("https://fakestoreapi.com/products/"+id.toString());
+    }
+
+    public Product updateProduct(Product product,Long id){
+        FakeStoreCreateProductRequestDto request=new FakeStoreCreateProductRequestDto();
+        request.setCategory(product.getCategoryName());
+        request.setImage(product.getImgUrl());
+        request.setPrice(product.getPrice());
+        request.setDescription(product.getDescription());
+        request.setTitle(product.getTitle());
+
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<FakeStoreCreateProductRequestDto> requestEntity = new HttpEntity<FakeStoreCreateProductRequestDto>(request,headers);
+
+        FakeStoreCreateProductResponseDto responseDto = restTemplate.exchange("https://fakestoreapi.com/products/{id}",
+                HttpMethod.PUT,requestEntity,FakeStoreCreateProductResponseDto.class,id).getBody();
+
+        Product product1=new Product();
+        product1.setDescription(responseDto.getDescription());
+        product1.setTitle(responseDto.getTitle());
+        product1.setPrice(responseDto.getPrice());
+        product1.setCategoryName(responseDto.getCategory());
+        product1.setImgUrl(responseDto.getImage());
+        product1.setId(responseDto.getId());
+
+        return product1;
     }
 }

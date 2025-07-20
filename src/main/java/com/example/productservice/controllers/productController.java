@@ -56,4 +56,13 @@ public class productController {
 
         productService.deleteProduct(id);
     }
+
+    @PutMapping("/{id}")
+    public CreateProductResponseDto updateProduct(@RequestBody CreateProductRequestDto createProductRequestDto,
+                                                  @PathVariable("id") Long id) throws ResourceNotFoundException {
+
+        Product product = productService.updateProduct(createProductRequestDto.toProduct(),id);
+
+        return CreateProductResponseDto.fromProduct(product);
+    }
 }

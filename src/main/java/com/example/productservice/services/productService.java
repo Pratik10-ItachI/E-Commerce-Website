@@ -13,4 +13,6 @@ public interface productService {
     Product getProduct(Long id) throws ResourceNotFoundException;
 
     void deleteProduct(Long id);
+
+    Product updateProduct(Product product,Long id) throws ResourceNotFoundException;
 }
