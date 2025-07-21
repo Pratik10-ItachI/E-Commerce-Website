@@ -25,16 +25,8 @@ public class ProductServiceDBImpl implements productService{
 
     @Override
     public Product createProduct(Product product) {
-        String categoryName = product.getCategory().getName();
-        Optional<Category> category = categoryRepository.findByName(categoryName);
-        Category toBeInProduct = null;
-        if (category.isEmpty()) {
-            toBeInProduct = categoryRepository.save(product.getCategory());
-        }
-        else{
-            toBeInProduct = category.get();
-        }
-        product.setCategory(toBeInProduct);
+
+        product.setCategory(getCategoryToBeInProduct(product));
         return productRepository.save(product);
     }
 
@@ -67,6 +59,13 @@ public class ProductServiceDBImpl implements productService{
             throw new ResourceNotFoundException("Product with id: " + id + " not found");
         }
 
+        product.setCategory(getCategoryToBeInProduct(product));
+        product.setId(id);
+        return productRepository.save(product);
+
+    }
+
+    private Category getCategoryToBeInProduct(Product product) {
         String categoryName = product.getCategory().getName();
         Optional<Category> category = categoryRepository.findByName(categoryName);
         Category toBeInProduct;
@@ -76,10 +75,6 @@ public class ProductServiceDBImpl implements productService{
         else{
             toBeInProduct = category.get();
         }
-
-        product.setCategory(toBeInProduct);
-        product.setId(id);
-        return productRepository.save(product);
-
+        return toBeInProduct;
     }
 }
