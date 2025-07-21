@@ -4,13 +4,14 @@ import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
-public class Product extends BaseClass{
-    private String title;
+public class Category extends BaseClass{
+    private String name;
     private String description;
-    private double price;
-    private String imgUrl;
-    private Category category;
+    private List<Product> featuredProducts;
+
 }

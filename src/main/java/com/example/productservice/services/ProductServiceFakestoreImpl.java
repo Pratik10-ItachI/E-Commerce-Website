@@ -24,7 +24,7 @@ public class ProductServiceFakestoreImpl implements productService {
     @Override
     public Product createProduct(Product product){
         FakeStoreCreateProductRequestDto request=new FakeStoreCreateProductRequestDto();
-        request.setCategory(product.getCategoryName());
+        request.setCategory(product.getCategory());
         request.setImage(product.getImgUrl());
         request.setPrice(product.getPrice());
         request.setDescription(product.getDescription());
@@ -38,7 +38,7 @@ public class ProductServiceFakestoreImpl implements productService {
         product1.setDescription(responseDto.getDescription());
         product1.setTitle(responseDto.getTitle());
         product1.setPrice(responseDto.getPrice());
-        product1.setCategoryName(responseDto.getCategory());
+        product1.setCategory(responseDto.getCategory());
         product1.setImgUrl(responseDto.getImage());
         product1.setId(responseDto.getId());
 
@@ -78,7 +78,7 @@ public class ProductServiceFakestoreImpl implements productService {
 
     public Product updateProduct(Product product,Long id){
         FakeStoreCreateProductRequestDto request=new FakeStoreCreateProductRequestDto();
-        request.setCategory(product.getCategoryName());
+        request.setCategory(product.getCategory());
         request.setImage(product.getImgUrl());
         request.setPrice(product.getPrice());
         request.setDescription(product.getDescription());
@@ -97,7 +97,7 @@ public class ProductServiceFakestoreImpl implements productService {
         product1.setDescription(responseDto.getDescription());
         product1.setTitle(responseDto.getTitle());
         product1.setPrice(responseDto.getPrice());
-        product1.setCategoryName(responseDto.getCategory());
+        product1.setCategory(responseDto.getCategory());
         product1.setImgUrl(responseDto.getImage());
         product1.setId(responseDto.getId());
 
