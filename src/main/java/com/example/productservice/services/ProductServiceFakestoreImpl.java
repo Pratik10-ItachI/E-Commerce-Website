@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Primary
 public class ProductServiceFakestoreImpl implements productService {
 
     private final RestTemplate restTemplate;

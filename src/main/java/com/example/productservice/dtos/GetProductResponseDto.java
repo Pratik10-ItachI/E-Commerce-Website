@@ -13,7 +13,7 @@ public class GetProductResponseDto {
     private String description;
     private double price;
     private String image;
-    private Category category;
+    private String categoryName;
 
     public Product toProduct() {
         Product product = new Product();
@@ -22,7 +22,9 @@ public class GetProductResponseDto {
         product.setDescription(this.getDescription());
         product.setPrice(this.getPrice());
         product.setImgUrl(this.getImage());
-        product.setCategory(this.getCategory());
+        Category category = new Category();
+        category.setName(this.getCategoryName());
+        product.setCategory(category);
         return product;
     }
 
@@ -32,7 +34,7 @@ public class GetProductResponseDto {
         getProductResponseDto.setTitle(product.getTitle());
         getProductResponseDto.setDescription(product.getDescription());
         getProductResponseDto.setPrice(product.getPrice());
-        getProductResponseDto.setCategory(product.getCategory());
+        getProductResponseDto.setCategoryName(product.getCategory().getName());
         getProductResponseDto.setImage(product.getImgUrl());
         return getProductResponseDto;
     }
