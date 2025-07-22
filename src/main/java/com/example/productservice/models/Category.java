@@ -13,7 +13,7 @@ import java.util.List;
 public class Category extends BaseClass{
     private String name;
     private String description;
-    @OneToMany
+    @OneToMany(fetch = jakarta.persistence.FetchType.EAGER)
     private List<Product> featuredProducts;
     @OneToMany(mappedBy = "category")
     private List<Product> allProducts;
