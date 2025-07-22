@@ -65,4 +65,11 @@ public class productController {
 
         return CreateProductResponseDto.fromProduct(product);
     }
+
+    @GetMapping("/Related/{prefix}")
+    public List<String> getProduct(@PathVariable("prefix") String prefix){
+
+        return productService.searchRelatedProducts(prefix);
+
+    }
 }

@@ -3,6 +3,8 @@ package com.example.productservice.repositories;
 import com.example.productservice.models.Product;
 import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,4 +23,10 @@ public interface ProductRepository extends JpaRepository<Product,Long> {
     List<Product>  findAll();
 
     Optional<Product> findProductById(Long id);
+
+    @Query(
+            value = "SELECT title FROM product WHERE lower(title) LIKE CONCAT('%', LOWER(:searchKey), '%')",
+            nativeQuery = true)
+    List<String> findAllPhones(@Param("searchKey") String searchKey);
+
 }

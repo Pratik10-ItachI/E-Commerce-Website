@@ -102,4 +102,9 @@ public class ProductServiceFakestoreImpl implements productService {
 
         return product1;
     }
+
+    @Override
+    public List<String> searchRelatedProducts(String prefix) {
+        return List.of();
+    }
 }

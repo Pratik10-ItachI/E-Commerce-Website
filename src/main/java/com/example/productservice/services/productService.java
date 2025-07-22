@@ -15,4 +15,6 @@ public interface productService {
     void deleteProduct(Long id);
 
     Product updateProduct(Product product,Long id) throws ResourceNotFoundException;
+
+    List<String> searchRelatedProducts(String prefix);
 }

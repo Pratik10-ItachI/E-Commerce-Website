@@ -77,4 +77,8 @@ public class ProductServiceDBImpl implements productService{
         }
         return toBeInProduct;
     }
+
+    public List<String> searchRelatedProducts(String prefix){
+        return productRepository.findAllPhones(prefix);
+    }
 }
