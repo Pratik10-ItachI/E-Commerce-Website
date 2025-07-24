@@ -1,5 +1,6 @@
 package com.example.productservice.dtos;
 
+import com.example.productservice.models.Category;
 import com.example.productservice.models.Product;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +13,7 @@ public class CreateProductResponseDto {
     private String description;
     private double price;
     private String imgUrl;
+    private String categoryName;
 
     public static CreateProductResponseDto fromProduct(Product product) {
         CreateProductResponseDto createProductResponseDto = new CreateProductResponseDto();
@@ -20,7 +22,7 @@ public class CreateProductResponseDto {
         createProductResponseDto.setDescription(product.getDescription());
         createProductResponseDto.setPrice(product.getPrice());
         createProductResponseDto.setImgUrl(product.getImgUrl());
-
+        createProductResponseDto.setCategoryName(product.getCategory().getName());
         return createProductResponseDto;
     }
 }

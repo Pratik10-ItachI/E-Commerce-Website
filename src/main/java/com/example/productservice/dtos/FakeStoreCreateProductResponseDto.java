@@ -1,5 +1,6 @@
 package com.example.productservice.dtos;
 
+import com.example.productservice.models.Category;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,6 @@ public class FakeStoreCreateProductResponseDto {
     private String description;
     private String image;
     private double price;
-    private String category;
+    private Category category;
 
 }

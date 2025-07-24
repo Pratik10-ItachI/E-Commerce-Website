@@ -51,8 +51,25 @@ public class productController {
         return CreateProductResponseDto.fromProduct(product);
     }
 
-    @RequestMapping(name = "PRATIK",value="")
-    public String Hello(){
-        return "Hi Hello";
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable("id") Long id) {
+
+        productService.deleteProduct(id);
+    }
+
+    @PutMapping("/{id}")
+    public CreateProductResponseDto updateProduct(@RequestBody CreateProductRequestDto createProductRequestDto,
+                                                  @PathVariable("id") Long id) throws ResourceNotFoundException {
+
+        Product product = productService.updateProduct(createProductRequestDto.toProduct(),id);
+
+        return CreateProductResponseDto.fromProduct(product);
+    }
+
+    @GetMapping("/Related/{prefix}")
+    public List<String> getProduct(@PathVariable("prefix") String prefix){
+
+        return productService.searchRelatedProducts(prefix);
+
     }
 }
